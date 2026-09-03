@@ -7,7 +7,7 @@
 var welcomeSubtitle = document.getElementById("welcome-sub");
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetch("https://delteams.net/WelcomeQuotes.json")
+    fetch("https://core-assets.delteams.net/dictionaries/WelcomeQuotes.json")
         .then(response => response.json())
         .then(data => {
             var chosenData = false
