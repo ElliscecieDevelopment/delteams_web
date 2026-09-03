@@ -121,6 +121,8 @@ export default {
 		`;
 
 
-		return new Response("Hello World! This is the GitHub repository version. This has been updated at 11:50 AM on 9.3.2026.");
+		return new Response(htmlContent, {
+			headers: { "content-type": "text/html;charset=UTF-8" },
+		});
 	},
 };
