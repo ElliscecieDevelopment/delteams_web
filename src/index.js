@@ -126,7 +126,6 @@ export default {
 						<h4>Our current motto. By Elliscecie, our CEO and founder.</h4>
 					</div>
 				</div>
-				<script type="text/javascript" src="https://core-assets.delteams.net/scripts/about.js"></script>
 			</body>
 			<footer>
 				<div id="footer-left">
@@ -140,7 +139,8 @@ export default {
 				</div>
 			</footer>
 			
-			<!-- <script type="text/javascript" src="https://core-assets.delteams.net/scripts/root.js"></script> -->
+			<script type="text/javascript" src="https://core-assets.delteams.net/scripts/root.js"></script>
+			<script type="text/javascript" src="https://core-assets.delteams.net/scripts/about.js"></script>
 		</html>
 		`;
 
