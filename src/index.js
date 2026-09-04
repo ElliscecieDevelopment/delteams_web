@@ -20,6 +20,7 @@ export default {
 				<title>Delteams - Welcome</title>
 				<link rel="stylesheet" href="https://core-assets.delteams.net/stylesheets/style.css" type="text/css">
 				<link rel="icon" href="https://core-assets.delteams.net/media/delteams-svg-optimized.svg">
+				<link rel="script" href="https://core-assets.delteams.net/scripts/about.js" type="text/javascript">
 			</head>
 			<header>
 				<div id="header-left">
