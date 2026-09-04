@@ -55,7 +55,7 @@ export default {
 			<body>
 				<div>
 					<div id="heading-banner">
-						<h1 id="welcome-title">Welcome...</h1>
+						<h1 id="welcome-title">Greetings...</h1>
 						<h3 id="welcome-sub"></h3>
 		
 						<!-- <div id="heading-banner-btns">
@@ -105,8 +105,6 @@ export default {
 		
 				</div>
 			</footer>
-			
-			<script type="text/javascript" src="https://core-assets.delteams.net/scripts/root.js"></script>
 			<script type="text/javascript" src="https://core-assets.delteams.net/scripts/about.js"></script>
 		</html>
 		`;
