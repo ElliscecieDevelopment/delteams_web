@@ -12,10 +12,6 @@ export default {
 	async fetch(request, env, ctx) {
 		const url = new URL(request.url);
 
-		if (url.pathname === "/api") {
-			return Response.json({ message: "Hello from Delteams API!" });
-		}
-
 		const htmlContent = `
 		<!DOCTYPE html>
 
@@ -113,8 +109,12 @@ export default {
 		</html>
 		`;
 
-		return new Response(htmlContent, {
-			headers: { "content-type": "text/html;charset=UTF-8" },
-		});
+		if (url.pathname === "/api") {
+			return Response.json({ message: "Hello from Delteams API!" });
+		} else {
+			return new Response(htmlContent, {
+				headers: { "content-type": "text/html;charset=UTF-8" },
+			});
+		}
 	},
 };
