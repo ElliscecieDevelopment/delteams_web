@@ -109,7 +109,7 @@ export default {
 		</html>
 		`;
 
-		if (url.pathname === "/api") {
+		if (url.pathname === "/api" || url.pathname === "/api/") {
 			return Response.json({ message: "Hello from Delteams API!" });
 		} else {
 			return new Response(htmlContent, {
