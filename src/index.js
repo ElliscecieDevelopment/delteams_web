@@ -12,6 +12,10 @@ export default {
 	async fetch(request, env, ctx) {
 		const url = new URL(request.url);
 
+		if (url.pathname === "/api") {
+			return Response.json({ message: "Hello from Delteams API!" });
+		}
+
 		const htmlContent = `
 		<!DOCTYPE html>
 
