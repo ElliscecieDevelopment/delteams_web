@@ -110,11 +110,15 @@ export default {
 		`;
 
 		if (url.pathname === "/api" || url.pathname === "/api/") {
-			return Response.json({ message: "Hello from Delteams API!" });
-		} else {
-			return new Response(htmlContent, {
-				headers: { "content-type": "text/html;charset=UTF-8" },
+			return Response.json({
+				message: "Hello from Delteams API!"
 			});
 		}
+		
+		return new Response(htmlContent, {
+			headers: {
+				"content-type": "text/html;charset=UTF-8",
+			},
+		});
 	},
 };
