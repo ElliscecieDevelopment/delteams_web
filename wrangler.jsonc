@@ -14,7 +14,7 @@
 	"r2_buckets": [
 		{
 			"bucket_name": "delteams-core-assets",
-			"binding": "delteams_core_assets",
+			"binding": "CORE_ASSETS",
 			"remote": true
 		}
 	]
