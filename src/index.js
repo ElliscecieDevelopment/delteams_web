@@ -9,10 +9,8 @@
  */
 
 async function loadPage(database, page_key) {
-	const html_key = page_key;
-
 	try {
-		const obj = await database.get(html_key);
+		const obj = await database.get(page_key);
 
 		if (obj === null) {
 			return new Response("Asset not found", { status: 404 });
@@ -101,6 +99,6 @@ export default {
 			return new Response("API endpoint not found", { status: 404 });
 		}
 
-		await loadPage(env.CORE_ASSETS, "html_pages/about.html");
+		return loadPage(env.CORE_ASSETS, "html_pages/about.html");
 	},
 };
