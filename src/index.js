@@ -13,7 +13,7 @@ export default {
 		const url = new URL(request.url);
 		const parts = url.pathname.split("/");
 
-		async function loadPage(env, key) {
+		async function loadPage(key) {
 			const html_key = key;
 		
 			try {
@@ -101,6 +101,6 @@ export default {
 			return new Response("API endpoint not found", { status: 404 });
 		}
 
-		loadPage(env, "html_pages/about.html");
+		loadPage("html_pages/about.html");
 	},
 };
