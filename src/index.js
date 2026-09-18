@@ -8,6 +8,26 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+async function loadPage(env, key) {
+	const html_key = key;
+
+	try {
+		const obj = await env.CORE_ASSETS.get(html_key);
+
+		if (obj === null) {
+			return new Response("Asset not found", { status: 404 });
+		}
+
+		const headers = new Headers();
+		obj.writeHttpMetadata(headers);
+		headers.set("Content-Type", "text/html");
+		return new Response(obj.body, { headers });
+
+	} catch (error) {
+		return new Response("Error fetching asset", { status: 500 });	
+	}
+}
+
 export default {
 	async fetch(request, env, ctx) {
 		const url = new URL(request.url);
@@ -21,6 +41,12 @@ export default {
 				if (!userID) {
 					return Response.json({
 						error: "User ID not provided"
+					}, { status: 400 });
+				}
+
+				if (userID == "0") {
+					return Response.json({
+						error: "Live user ID cannot be 0"
 					}, { status: 400 });
 				}
 
@@ -42,25 +68,39 @@ export default {
 				return Response.json(user);
 			}
 
+			if (parts[2] === "auth") { // Operate auth
+				if (parts[3] === "login") {
+					// Placeholder for login operations
+					return Response.json({
+						message: "Login endpoint is under construction"
+					});
+				}
+
+				if (parts[3] === "register") {
+					// Placeholder for register operations
+					return Response.json({
+						message: "Register endpoint is under construction"
+					});
+				}
+
+				if (parts[3] === "logout") {
+					// Placeholder for logout operations
+					return Response.json({
+						message: "Logout endpoint is under construction"
+					});
+				}
+			}
+
+			if (parts[2] === "teams") { // Operate teams
+				// Placeholder for teams operations
+				return Response.json({
+					message: "Teams endpoint is under construction"
+				});
+			}
+
 			return new Response("API endpoint not found", { status: 404 });
 		}
 
-		const html_key = "html_pages/about.html";
-
-		try {
-			const obj = await env.CORE_ASSETS.get(html_key);
-
-			if (obj === null) {
-				return new Response("Asset not found", { status: 404 });
-			}
-
-			const headers = new Headers();
-			obj.writeHttpMetadata(headers);
-			headers.set("Content-Type", "text/html");
-			return new Response(obj.body, { headers });
-
-		} catch (error) {
-			return new Response("Error fetching asset", { status: 500 });	
-		}
+		loadPage(env, "html_pages/about.html");
 	},
 };
