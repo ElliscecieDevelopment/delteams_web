@@ -26,7 +26,7 @@ export default {
 
 				const user = await env.DELTEAMS_IDENTITY
 					.prepare(`
-						SELECT id, username, created_at
+						SELECT id, username, created_at, common_identity
 						FROM users
 						WHERE id = ?
 					`)
