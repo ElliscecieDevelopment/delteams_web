@@ -8,30 +8,30 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+async function loadPage(database, page_key) {
+	const html_key = page_key;
+
+	try {
+		const obj = await database.get(html_key);
+
+		if (obj === null) {
+			return new Response("Asset not found", { status: 404 });
+		}
+
+		const headers = new Headers();
+		obj.writeHttpMetadata(headers);
+		headers.set("Content-Type", "text/html");
+		return new Response(obj.body, { headers });
+
+	} catch (error) {
+		return new Response("Error fetching asset", { status: 500 });	
+	}
+}
+
 export default {
 	async fetch(request, env, ctx) {
 		const url = new URL(request.url);
 		const parts = url.pathname.split("/");
-
-		async function loadPage(key) {
-			const html_key = key;
-		
-			try {
-				const obj = await env.CORE_ASSETS.get(html_key);
-		
-				if (obj === null) {
-					return new Response("Asset not found", { status: 404 });
-				}
-		
-				const headers = new Headers();
-				obj.writeHttpMetadata(headers);
-				headers.set("Content-Type", "text/html");
-				return new Response(obj.body, { headers });
-		
-			} catch (error) {
-				return new Response("Error fetching asset", { status: 500 });	
-			}
-		}
 
 		if (request.method === "GET" && parts[1] === "api") {
 			// API Code
@@ -101,6 +101,6 @@ export default {
 			return new Response("API endpoint not found", { status: 404 });
 		}
 
-		loadPage("html_pages/about.html");
+		await loadPage(env.CORE_ASSETS, "html_pages/about.html");
 	},
 };
