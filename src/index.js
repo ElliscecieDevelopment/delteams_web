@@ -24,7 +24,7 @@ export default {
 					}, { status: 400 });
 				}
 
-				const user = await env.DB
+				const user = await env.DELTEAMS_IDENTITY
 					.prepare(`
 						SELECT id, username, created_at
 						FROM users

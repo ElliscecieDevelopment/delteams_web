@@ -17,7 +17,16 @@
 			"binding": "CORE_ASSETS",
 			"remote": true
 		}
-	]
+	],
+	"d1_databases": [
+		{
+			"binding": "DELTEAMS_IDENTITY",
+			"database_name": "delteams-identity",
+			"database_id": "1b69c690-f243-4b4a-8741-74e0999d3338"
+		}
+	],
+
+
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
