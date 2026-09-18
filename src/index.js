@@ -13,7 +13,7 @@ export default {
 		const url = new URL(request.url);
 		const parts = url.pathname.split("/");
 
-		const html_key = "index.html";
+		const html_key = "html_pages/about.html";
 
 		try {
 			const obj = await env.CORE_ASSETS.get(html_key);
