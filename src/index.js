@@ -99,6 +99,6 @@ export default {
 			return new Response("API endpoint not found", { status: 404 });
 		}
 
-		return loadPage(env.CORE_ASSETS, "/html_pages/about.html");
+		return loadPage(env.CORE_ASSETS, "html_pages/about.html");
 	},
 };
