@@ -115,6 +115,12 @@ export default {
 			if (parts[2] === "users") { // Operate users
 				const userID = parts[3];
 
+				if (!userID) {
+					return Response.json({
+						error: "User ID not provided"
+					}, { status: 400 });
+				}
+
 				const user = await env.DB
 					.prepare(`
 						SELECT id, username, created_at
