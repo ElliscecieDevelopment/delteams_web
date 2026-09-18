@@ -11,6 +11,7 @@
 export default {
 	async fetch(request, env, ctx) {
 		const url = new URL(request.url);
+		const parts = url.pathname.split("/");
 
 		const htmlContent = `
 		<!DOCTYPE html>
@@ -109,10 +110,30 @@ export default {
 		</html>
 		`;
 
-		if (url.pathname === "/api" || url.pathname === "/api/") {
-			return Response.json({
-				message: "Hello from Delteams API!"
-			});
+		if (request.method === "GET" && parts[1] === "api") {
+			// API Code
+			if (parts[2] === "users") { // Operate users
+				const userID = parts[3];
+
+				const user = await env.DB
+					.prepare(`
+						SELECT id, username, created_at
+						FROM users
+						WHERE id = ?
+					`)
+					.bind(userID)
+					.first();
+
+				if (!user) {
+					return Response.json({
+						error: "User not found"
+					}, { status: 404 });
+				}
+
+				return Response.json(user);
+			}
+
+			return new Response("API endpoint not found", { status: 404 });
 		}
 		
 		return new Response(htmlContent, {
